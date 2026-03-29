@@ -1,0 +1,66 @@
+# WatchAI Teleop Configuration
+# All tunable parameters for the teleoperation pipeline.
+
+receiver:
+  host: "0.0.0.0"
+  port: 8765
+  ring_buffer_size: 500
+
+eskf:
+  process_noise_accel: 0.1
+  process_noise_bias: 0.001
+  zupt_measurement_noise: 0.01
+  workspace_bounds:
+    x: [-0.4, 0.4]
+    y: [-0.4, 0.4]
+    z: [0.05, 0.6]
+
+zupt:
+  window_size_ms: 200
+  accel_var_threshold: 0.05
+  gyro_var_threshold: 0.02
+  hysteresis_frames: 5
+
+control:
+  mode: "eskf"
+  loop_frequency_hz: 20
+
+  orientation:
+    gain: 1.0
+
+  eskf_position:
+    scaling: 1.0
+
+  rate_control:
+    dead_zone_deg: 5.0
+    max_velocity_cm_s: 10.0
+    gain_curve: "quadratic"
+
+  gripper:
+    mode: "continuous"
+
+  smoothing:
+    enabled: true
+    filter_type: "ema"
+    position_cutoff_hz: 5.0
+    orientation_cutoff_hz: 8.0
+
+recording:
+  save_dir: "data/raw"
+  camera_resolution: [128, 128]
+  save_raw_imu: true
+  episode_timeout_s: 30
+
+env:
+  task: "PickPlace"
+  robot: "Panda"
+  controller: "OSC_POSE"
+  single_object_mode: 1
+  object_type: "can"
+  camera_names: ["agentview"]
+  camera_height: 128
+  camera_width: 128
+  control_freq: 20
+  horizon: 600
+  render_during_teleop: true
+  seed: null

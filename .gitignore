@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+
+# Data artifacts
+data/raw/
+data/datasets/
+data/checkpoints/
+*.hdf5
+*.h5
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# uv
+uv.lock
+
+# MuJoCo
+*.mjlog
+
+# Experiment tracking
+wandb/
