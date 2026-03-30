@@ -39,6 +39,16 @@ control:
   gripper:
     mode: "continuous"
 
+  ee_interface:
+    position_gains: [1.0, 1.0, 1.0]
+    orientation_gain: 1.0
+    max_position_delta: 0.05          # meters, matches OSC_POSE output_max
+    max_orientation_delta: 0.5        # radians, matches OSC_POSE output_max
+    workspace_bounds:                 # EEF absolute position limits in robot base frame
+      x: [-0.5, 0.5]
+      y: [-0.5, 0.5]
+      z: [0.82, 1.2]
+
   smoothing:
     enabled: true
     filter_type: "ema"
